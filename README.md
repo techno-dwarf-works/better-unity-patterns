@@ -1,5 +1,7 @@
 # {display_name}
 
+> DISCLAIMER: This is not an official product provided by Unity Technologies Inc.
+
 ## Install
 Project Settings -> Package Manager -> Scoped registries
 </br>
