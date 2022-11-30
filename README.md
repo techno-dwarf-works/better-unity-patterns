@@ -1,4 +1,4 @@
-# {display_name}
+# Better Unity Patterns
 
 > DISCLAIMER: This is not an official product provided by Unity Technologies Inc.
 

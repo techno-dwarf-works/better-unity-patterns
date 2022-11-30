@@ -1,23 +1,34 @@
 {
-  "name": "com.uurha.{package_name}",
-  "displayName": "{display_name}",
+  "name": "com.uurha.betterunitypatterns",
+  "displayName": "Unity Patterns",
   "version": "0.0.1",
   "unity": "2018.3",
-  "description": " ",
+  "description": "Design patterns done for Unity projects",
   "dependencies": {
-    "com.uurha.somepackage": "0.1.0"
   },
   "author": {
     "name": "Arcueid D'athemon",
     "url": "https://github.com/uurha"
   },
-  "changelogUrl": "https://github.com/uurha/{project_name}",
-  "documentationUrl": "https://github.com/uurha/{project_name}/tree/main#readme",
+  "changelogUrl": "https://github.com/uurha/BetterUnityPatterns",
+  "documentationUrl": "https://github.com/uurha/BetterUnityPatterns/tree/main#readme",
   "license": "MIT",
-  "licensesUrl":"https://github.com/uurha/{project_name}/blob/main/LICENSE",
+  "licensesUrl":"https://github.com/uurha/BetterUnityPatterns/blob/main/LICENSE",
   "keywords": [
-    "keyword1",
-    "keyword2",
-    "keyword2"
+    "design patterns",
+    "presets",
+    "patterns"
+  ],
+  "samples": [
+    {
+      "displayName": "Step Machine samples",
+      "description": "Contains Step Machine samples",
+      "path": "Samples~/StepMachine"
+    },
+    {
+      "displayName": "State Machine samples",
+      "description": "Contains State Machine samples",
+      "path": "Samples~/StateMachine"
+    }
   ]
 }
