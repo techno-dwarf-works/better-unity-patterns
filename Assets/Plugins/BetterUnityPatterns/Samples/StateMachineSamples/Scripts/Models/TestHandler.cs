@@ -1,7 +1,7 @@
 using Better.UnityPatterns.Runtime.StateMachine;
 using Better.UnityPatterns.Runtime.StateMachine.States;
 
-namespace Samples.StateMachine
+namespace Samples.StateMachineSamples.Models
 {
     public class TestHandler<TState> : IStateEventHandler<TState> where TState : BaseState
     {

@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Better.UnityPatterns.Runtime.StepMachine.Interfaces;
 
-namespace Samples.StepMachine.StepModels
+namespace Samples.StepMachineSamples.StepModels
 {
     public class StringStep : IBaseStep
     {

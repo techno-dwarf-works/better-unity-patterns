@@ -3,17 +3,15 @@ using Better.UnityPatterns.Runtime.StateMachine.States;
 
 namespace Better.UnityPatterns.Runtime.StateMachine.Transitions
 {
-
     public class FromToTransition<TState> : Transition<TState> where TState : BaseState
     {
-
-        private Func<bool> predicate;
+        private readonly Func<bool> _predicate;
         public TState From { get; }
 
         public FromToTransition(TState from, TState to, Func<bool> predicate) : base(to)
         {
             From = from;
-            this.predicate = predicate;
+            _predicate = predicate;
         }
 
         public override bool Validate(TState current)
@@ -23,9 +21,7 @@ namespace Better.UnityPatterns.Runtime.StateMachine.Transitions
                 return false;
             }
 
-            return predicate.Invoke();
+            return _predicate.Invoke();
         }
-
     }
-
 }

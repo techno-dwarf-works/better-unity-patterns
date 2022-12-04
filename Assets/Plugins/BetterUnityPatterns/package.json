@@ -28,7 +28,7 @@
     {
       "displayName": "State Machine samples",
       "description": "Contains State Machine samples",
-      "path": "Samples~/StateMachine"
+      "path": "Samples~/StateMachineTests"
     }
   ]
 }

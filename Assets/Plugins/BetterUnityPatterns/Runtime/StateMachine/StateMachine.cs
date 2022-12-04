@@ -19,6 +19,7 @@ namespace Better.UnityPatterns.Runtime.StateMachine
         public StateMachine(float tickStep = 0)
         {
             _tickTimestep = tickStep;
+            _transitionManager = new DefaultTransitionManager<TState>();
         }
 
         /// <summary>

@@ -23,15 +23,12 @@ namespace Better.UnityPatterns.Runtime.StateMachine
             var transition = new FromToTransition<TState>(from, to, predicate);
             var key = transition.From;
 
-            if (_outfromingTransitions.TryGetValue(key, out var transitions))
-            {
-                transitions.Add(transition);
-            }
-            else
+            if (!_outfromingTransitions.TryGetValue(key, out var transitions))
             {
                 transitions = new List<Transition<TState>>();
                 _outfromingTransitions.Add(key, transitions);
             }
+            transitions.Add(transition);
         }
 
         public void AddTransition(TState to, Func<bool> predicate)
