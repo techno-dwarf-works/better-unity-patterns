@@ -7,33 +7,45 @@ namespace Better.UnityPatterns.Runtime.StateMachine
 {
     public class DefaultTransitionManager<TState> : ITransitionManager<TState> where TState : BaseState
     {
-        private readonly Dictionary<TState, List<Transition<TState>>> _outfromingTransitions;
+        private readonly Dictionary<TState, List<Transition<TState>>> _fromToTransitions;
         private readonly List<Transition<TState>> _anyToTransitions;
         private List<Transition<TState>> _currentTransitions;
 
         public DefaultTransitionManager()
         {
-            _outfromingTransitions = new Dictionary<TState, List<Transition<TState>>>();
+            _fromToTransitions = new Dictionary<TState, List<Transition<TState>>>();
             _anyToTransitions = new List<Transition<TState>>();
             _currentTransitions = new List<Transition<TState>>();
         }
 
         public void AddTransition(TState from, TState to, Func<bool> predicate)
         {
-            var transition = new FromToTransition<TState>(from, to, predicate);
+            AddTransition(from, to, new DelegateCondition(predicate));
+        }
+
+        public void AddTransition(TState from, TState to, ITransitionCondition transitionCondition)
+        {
+            var transition = new FromToTransition<TState>(from, to, transitionCondition);
             var key = transition.From;
 
-            if (!_outfromingTransitions.TryGetValue(key, out var transitions))
+            if (!_fromToTransitions.TryGetValue(key, out var transitions))
             {
                 transitions = new List<Transition<TState>>();
-                _outfromingTransitions.Add(key, transitions);
+                _fromToTransitions.Add(key, transitions);
             }
+
             transitions.Add(transition);
+        }
+        
+        public void AddTransition(TState to, ITransitionCondition transitionCondition)
+        {
+            var transition = new AnyToTransition<TState>(to, transitionCondition);
+            _anyToTransitions.Add(transition);
         }
 
         public void AddTransition(TState to, Func<bool> predicate)
         {
-            var transition = new AnyToTransition<TState>(to, predicate);
+            var transition = new AnyToTransition<TState>(to, new DelegateCondition(predicate));
             _anyToTransitions.Add(transition);
         }
 
@@ -54,7 +66,7 @@ namespace Better.UnityPatterns.Runtime.StateMachine
 
         public void RunTransitionFor(TState state)
         {
-            if (_outfromingTransitions.TryGetValue(state, out _currentTransitions))
+            if (_fromToTransitions.TryGetValue(state, out _currentTransitions))
             {
                 _currentTransitions.AddRange(_anyToTransitions);
             }

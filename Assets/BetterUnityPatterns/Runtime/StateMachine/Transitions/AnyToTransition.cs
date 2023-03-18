@@ -5,11 +5,11 @@ namespace Better.UnityPatterns.Runtime.StateMachine.Transitions
 {
     public class AnyToTransition<TState> : Transition<TState> where TState : BaseState
     {
-        private Func<bool> predicate;
+        private readonly ITransitionCondition _predicate;
 
-        public AnyToTransition(TState to, Func<bool> predicate) : base(to)
+        public AnyToTransition(TState to, ITransitionCondition predicate) : base(to)
         {
-            this.predicate = predicate;
+            _predicate = predicate;
         }
 
         public override bool Validate(TState current)
@@ -19,7 +19,13 @@ namespace Better.UnityPatterns.Runtime.StateMachine.Transitions
                 return false;
             }
 
-            return predicate.Invoke();
+            var condition = _predicate.GetCondition();
+            if (condition)
+            {
+                _predicate.Reset();
+            }
+
+            return condition;
         }
     }
 }
