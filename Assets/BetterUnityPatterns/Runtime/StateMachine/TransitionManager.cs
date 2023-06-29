@@ -75,5 +75,11 @@ namespace Better.UnityPatterns.Runtime.StateMachine
                 _currentTransitions = _anyToTransitions;
             }
         }
+        public void ClearAllTransitions()
+        {
+            _anyToTransitions.Clear();
+            _outfromingTransitions.Clear();
+            _currentTransitions.Clear();
+        }
     }
 }

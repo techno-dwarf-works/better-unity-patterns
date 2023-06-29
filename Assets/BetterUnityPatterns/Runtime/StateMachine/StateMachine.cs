@@ -82,6 +82,10 @@ namespace Better.UnityPatterns.Runtime.StateMachine
         {
             _transitionManager.AddTransition(to, predicate);
         }
+        public void ClearAllTransitions()
+        {
+            _transitionManager.ClearAllTransitions();
+        }
     }
 
     public class StateMachine<TState, TEventHandler> : StateMachine<TState> where TState : BaseState

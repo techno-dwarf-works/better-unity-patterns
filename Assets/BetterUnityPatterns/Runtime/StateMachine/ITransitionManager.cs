@@ -9,5 +9,6 @@ namespace Better.UnityPatterns.Runtime.StateMachine
         public void AddTransition(TState from, TState to, Func<bool> predicate);
         public void AddTransition(TState to, Func<bool> predicate);
         public bool FindTransition(TState currentState, out TState nextState);
+        public void ClearAllTransitions();
     }
 }
